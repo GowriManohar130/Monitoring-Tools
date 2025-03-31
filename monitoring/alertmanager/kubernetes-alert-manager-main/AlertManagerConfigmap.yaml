@@ -1,0 +1,25 @@
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: alertmanager-config
+  namespace: monitoring
+data:
+  config.yml: |-
+    global:
+    templates:
+    - '/etc/alertmanager/*.tmpl'
+    
+    route:
+      receiver: 'Email-notifications'
+
+    receivers:
+    - name: 'Email-notifications'
+      email_configs:
+      - to: devops@infyshine.com
+        from: onboarding@infyshine.com
+        smarthost: smtp.office365.com:587
+        auth_username: onboarding@infyshine.com
+        auth_identity: onboarding@infyshine.com
+        auth_password: Welcome@123$#
+        send_resolved: true 
+               
